@@ -6,3 +6,14 @@ class Solution:
                 if nums[i] + nums[j] == target:
                     return [i, j]
         return[]
+        
+***************************************************
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        n = len(nums)
+        hashtable = dict()
+        for i,num in enumerate(nums):
+            if target - num in hashtable:
+                return [i, hashtable[target - num]]
+            hashtable[nums[i]] = i
+        return []
