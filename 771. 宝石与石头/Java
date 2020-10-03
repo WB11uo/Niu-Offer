@@ -1,0 +1,29 @@
+class Solution {
+    public int numJewelsInStones(String J, String S) {
+        char[] str1 = J.toCharArray();
+        char[] str2 = S.toCharArray(); 
+        int n = 0;
+        for( int i = 0; i < str1.length; i++)
+            for(int j = 0; j <str2.length; j++)
+                if (str1[i] == str2[j]) {
+                    n++;
+                }
+        return n;
+    }
+}
+
+///////////////////////////////////////////////////////
+class Solution {
+    public int numJewelsInStones(String J, String S) {
+        Set<Character> set = new HashSet<>();
+        int n = 0;
+        for (int i = 0; i < J.length(); i++) {
+            set.add(J.charAt(i));
+        }
+        for (int j = 0; j < S.length(); j++) {
+            if (set.contains(S.charAt(j)))
+                n++;
+        }
+        return n;
+    }
+}
