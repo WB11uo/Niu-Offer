@@ -1,0 +1,79 @@
+class MaxQueue {
+	int[] q = new int[20000];
+	int begin = 0, end = 0;
+
+    public MaxQueue() {
+
+    }
+    
+    public int max_value() {
+		int ans = -1;
+		for (int i = begin; i <= end; i++) {
+			ans = Math.max(ans, q[i]);
+		}		
+		return ans;
+    }
+    
+    public void push_back(int value) {
+		q[end++] = value;
+    }
+    
+    public int pop_front() {
+		if (begin == end) {
+			return -1;
+		}
+		return q[begin++];
+    }
+}
+
+/**
+ * Your MaxQueue object will be instantiated and called as such:
+ * MaxQueue obj = new MaxQueue();
+ * int param_1 = obj.max_value();
+ * obj.push_back(value);
+ * int param_3 = obj.pop_front();
+ */
+ /////////////////////////////////////////////////////////
+ class MaxQueue {
+	Deque<Integer> d;
+	Queue<Integer> q;
+	
+    public MaxQueue() {
+		d = new LinkedList<Integer>();
+		q = new LinkedList<Integer>();
+    }
+    
+    public int max_value() {
+		if (d.isEmpty()) {
+			return -1;
+		}	
+		return d.peekFirst();
+    }
+    
+    public void push_back(int value) {
+		while (!d.isEmpty() && d.peekLast() < value) {
+			d.pollLast();
+		}
+		d.offerLast(value);
+		q.offer(value);
+    }
+    
+    public int pop_front() {
+		if (q.isEmpty()) {
+			return -1;
+		}
+		int ans = q.poll();
+		if (ans == d.peekFirst()) {
+			d.pollFirst();
+		}
+		return ans;
+    }
+}
+
+/**
+ * Your MaxQueue object will be instantiated and called as such:
+ * MaxQueue obj = new MaxQueue();
+ * int param_1 = obj.max_value();
+ * obj.push_back(value);
+ * int param_3 = obj.pop_front();
+ */
