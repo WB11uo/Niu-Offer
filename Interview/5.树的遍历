@@ -1,4 +1,5 @@
 public class DFS {
+//如果某个节点有子节点和兄弟节点，那么优先遍历子节点，左子树优先于右子树，直到子树都被深度遍历后，然后再遍历兄弟节点及其子树。
 	//深度优先遍历方法
 	public static void depthFirstSearch(Node root) {
 		Stack<Node> stack = new Stack<Node>();
@@ -57,6 +58,7 @@ class Node{
 }
 /////////////////////////////////////////////////////////////////////////
 public class BFS {
+//广度优先遍历和深度优先遍历是相反的，即如果某个节点有子节点和兄弟节点，那么优先遍历兄弟节点。使用队列的数据来存储树中的结点。
 	public static void breadthFirstSearch(Node root) {
 		Node tempnode = root;
 		Queue<Node> queue = new LinkedList<Node>();
