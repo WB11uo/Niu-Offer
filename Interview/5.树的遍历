@@ -1,0 +1,109 @@
+public class DFS {
+	//深度优先遍历方法
+	public static void depthFirstSearch(Node root) {
+		Stack<Node> stack = new Stack<Node>();
+		//在遍历过程中存储树的结点信息，FILO的特点记录了处理的顺序
+		List<Node> list = new LinkedList<Node>();
+		//存放遍历结果
+		Node tempnode  = root;
+		stack.push(tempnode);//根结点入栈
+		
+		while(!stack.isEmpty()) {//当栈为空，表示整棵树已经全部被遍历
+			tempnode = stack.pop();
+			list.add(tempnode);
+			if(tempnode.rightnode != null) {
+				stack.push(tempnode.rightnode);//将分支结点压入栈，为了保证先处理左子树，再处理右子树，必须先将右子树压入栈
+			}
+			
+			if(tempnode.leftnode != null) {
+				stack.push(tempnode.leftnode);
+			}
+			
+		}
+		
+		for(Node tn :list) {
+			System.out.print(tn.val+",");
+		}
+	}
+	
+	public static void main(String[] args) {
+		Node n1 = new Node(1);
+		Node n2= new Node(2);
+		Node n3 = new Node(3);
+		Node n4 = new Node(4);
+		Node n5 = new Node(5);
+		Node n6 = new Node(6);
+		Node n7 = new Node(7);
+		
+		n1.leftnode = n2;
+		n1.rightnode = n3;
+		
+		n2.leftnode = n4;
+		n2.rightnode = n5;
+		
+		n3.leftnode = n6;
+		n3.rightnode = n7;
+		
+		DFS.depthFirstSearch(n1);
+	}
+}
+class Node{
+	int val;
+	Node leftnode;
+	Node rightnode;
+	Node(int val){
+		this.val = val;
+	}
+}
+/////////////////////////////////////////////////////////////////////////
+public class BFS {
+	public static void breadthFirstSearch(Node root) {
+		Node tempnode = root;
+		Queue<Node> queue = new LinkedList<Node>();
+		List<Node> list = new LinkedList<Node>();
+		queue.add(tempnode);
+		
+		while(!queue.isEmpty()) {
+			tempnode = queue.remove();
+			list.add(tempnode);
+			if(tempnode.leftnode!= null) {
+				queue.add(tempnode.leftnode);
+			}
+			if(tempnode.rightnode != null) {
+				queue.add(tempnode.rightnode);
+			}
+		}
+		
+		for(Node tn :list) {
+			System.out.print(tn.val+",");
+		}
+	}
+	public static void main(String[] args) {
+		Node n1 = new Node(1);
+		Node n2= new Node(2);
+		Node n3 = new Node(3);
+		Node n4 = new Node(4);
+		Node n5 = new Node(5);
+		Node n6 = new Node(6);
+		Node n7 = new Node(7);
+		
+		n1.leftnode = n2;
+		n1.rightnode = n3;
+		
+		n2.leftnode = n4;
+		n2.rightnode = n5;
+		
+		n3.leftnode = n6;
+		n3.rightnode = n7;
+		
+		DFS.depthFirstSearch(n1);
+	}
+}
+class Node{
+	int val;
+	Node leftnode;
+	Node rightnode;
+	Node(int val){
+		this.val = val;
+	}
+}
