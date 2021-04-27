@@ -1,0 +1,25 @@
+// 统计二叉树每一层节点数目的最大值
+public void test(TreeNode root) {
+	Deque<TreeNode> queue = new Deque<>();
+	TreeNode tmp = new TreeNode();
+	
+	queue.append(root);
+	int maxS = 0;
+	
+	while(!queue.isEmpty()) {
+		
+		int s = queue.size();
+		
+		maxS = Math.max(s, maxS);
+		
+		for (int i = 0; i < s; i++) {
+			tmp = queue.poll();
+			if (tmp.left != null) {
+				queue.append(tmp.left);
+			}
+			if (tmp.right != null) {
+				queue.append(tmp.right);
+			}
+		}
+	}
+}
